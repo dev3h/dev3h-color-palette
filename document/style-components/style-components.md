@@ -1,0 +1,1 @@
+- Nếu cài bị lỗi thì check [ở đây](https://stackoverflow.com/questions/76216979/npm-err-cannot-read-properties-of-null-reading-edgesout-when-npm-i-styled-c)
