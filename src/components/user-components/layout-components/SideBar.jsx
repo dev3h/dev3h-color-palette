@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { appNavTree } from "../../../configs/NavigationConfig";
 
@@ -17,7 +18,7 @@ const StyledMenu = styled.div`
         `;
   }}
 `;
-const StyledMenuItem = styled(Link)`
+const StyledMenuItem = styled(NavLink)`
   font-size: 16px;
   display: flex;
   ${(props) =>
@@ -86,6 +87,10 @@ const SideBar = ({ isMobile }) => {
       ))}
     </StyledMenu>
   );
+};
+
+SideBar.propTypes = {
+  isMobile: PropTypes.bool,
 };
 
 export default SideBar;

@@ -7,33 +7,34 @@ import {
   HeartOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import path from "../utils/path";
 
 const appNavTree = [
   {
     key: "new",
     title: "New",
-    path: "",
+    path: path.HOME,
     iconOutlined: <StarOutlined />,
     iconFilled: <StarFilled />,
   },
   {
     key: "popular",
     title: "Popular",
-    path: "popular",
+    path: path.POPULAR,
     iconOutlined: <ThunderboltOutlined />,
     iconFilled: <ThunderboltFilled />,
   },
   {
     key: "random",
     title: "Random",
-    path: "random",
+    path: path.RANDOM,
     iconOutlined: <ReloadOutlined />,
     iconFilled: <ReloadOutlined />,
   },
   {
     key: "collection",
     title: "Collection",
-    path: "collection",
+    path: path.COLLECTION,
     iconOutlined: <HeartOutlined />,
     iconFilled: <HeartFilled />,
   },

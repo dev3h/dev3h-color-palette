@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Divider } from "antd";
 
@@ -32,6 +33,10 @@ const DropdownCard = () => {
       <DropdownItem title="Collections" />
     </StyledDropdownCard>
   );
+};
+
+DropdownItem.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default DropdownCard;

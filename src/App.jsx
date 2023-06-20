@@ -1,9 +1,10 @@
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeProvider, withTheme } from "styled-components";
+import { ThemeProvider } from "styled-components";
 
 import path from "./utils/path";
+import ErrorPage from "./views/publicViews/error-page";
 import { Home } from "./views/publicViews";
 import { UserLogin } from "./views/publicViews/auth";
 import PublicLayout from "./layouts/publicLayouts";
@@ -15,6 +16,7 @@ function App() {
     {
       path: path.PUBLIC,
       element: <PublicLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: path.HOME,
