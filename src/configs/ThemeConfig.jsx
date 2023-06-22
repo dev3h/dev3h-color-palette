@@ -3,6 +3,7 @@ const theme = {
     gray: "rgba(0, 0, 0, 0.65)",
   },
   backgrounds: {
+    hover: "rgba(0, 0, 0, 0.05)",
     active: "#ccc",
   },
 };

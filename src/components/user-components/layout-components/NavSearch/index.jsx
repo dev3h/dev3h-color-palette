@@ -3,7 +3,7 @@ import DropdownCard from "./DropdownCard";
 import InputSearch from "./InputSearch";
 
 const NavSearch = () => {
-  const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(true);
 
   const handleInputFocus = (event) => {
     event.stopPropagation();

@@ -8,6 +8,7 @@ const GlobalClasses = css`
   }
   body {
     font-family: "Poppins", sans-serif;
+    font-size: 14px;
   }
 `;
 

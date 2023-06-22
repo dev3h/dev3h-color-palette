@@ -1,0 +1,2 @@
+- Khi tạo file `.env` thì lưu ý phải có prefix **VITE**
+- [createasyncthunk](https://techmaster.vn/posts/36779/huong-dan-su-dung-createasyncthunk-trong-redux-toolkit)

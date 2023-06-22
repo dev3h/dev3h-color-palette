@@ -43,7 +43,7 @@ const StyledMenuItem = styled(NavLink)`
     css`
       &:hover {
         color: #000;
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: ${(props) => props.theme.backgrounds.hover};
       }
     `}
 

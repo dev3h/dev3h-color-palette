@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -56,6 +56,12 @@ const InputSearch = ({ handleInputFocus, handleInputBlur, isFocus }) => {
       />
     </StyledInputSearch>
   );
+};
+
+InputSearch.propTypes = {
+  handleInputFocus: PropTypes.func,
+  handleInputBlur: PropTypes.func,
+  isFocus: PropTypes.bool,
 };
 
 export default InputSearch;
