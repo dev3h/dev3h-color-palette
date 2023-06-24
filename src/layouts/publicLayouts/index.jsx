@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Col, Row } from "antd";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import { AppHeader, SideBar } from "../../components/user-components/layout-components";
-import Container from "../../components/user-components/shared-components/Container";
+import { Container } from "../../components/user-components/shared-components";
 import { useCheckMobileView } from "../../hooks";
 
 const Wrapper = styled.div`

@@ -10,14 +10,7 @@ const colorTagSlice = createSlice({
     showMessage: false,
     redirect: "",
   },
-  reducers: {
-    setColorTags: (state, action) => {
-      state.colorTags = action.payload;
-    },
-    setLoading: (state, action) => {
-      state.isLoading = action.payload;
-    },
-  },
+  reducers: {},
   // Code logic xử lý async action
   extraReducers: (builder) => {
     // Bắt đầu thực hiện action (Promise pending)
@@ -40,7 +33,5 @@ const colorTagSlice = createSlice({
     });
   },
 });
-
-export const { setColorTags, setLoading } = colorTagSlice.actions;
 
 export default colorTagSlice.reducer;

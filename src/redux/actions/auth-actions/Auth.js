@@ -9,7 +9,7 @@ import {
   SIGNUP,
   SIGNUP_SUCCESS,
   SHOW_LOADING,
-} from "../constants/Auth";
+} from "../../constants/Auth";
 
 export const signIn = createAsyncThunk(SIGNIN, async (user, { dispatch }) => {});
 

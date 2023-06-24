@@ -3,49 +3,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Divider } from "antd";
+import { Divider, Space } from "antd";
 
-// import { getColorTagData } from "../../../../services/ColorTagService";
-import { getCollectionTagData } from "../../../../services/CollectionTagService";
-import { getColorTags } from "../../../../redux/actions/app-actions";
+import { getColorTags, getCollectionTags } from "../../../../redux/actions/app-actions";
 
 const StyledDropdownCard = styled.div`
   position: absolute;
   z-index: 100;
   width: 100%;
-  border: 1px solid #ececec;
+  border: 1px solid ${(props) => props?.theme?.colors?.ec};
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
   margin-top: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  background-color: #fff;
   .title {
     margin-bottom: 10px;
   }
-  .wrapper {
+  .button {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
     align-items: center;
-    .button {
-      display: flex;
-      align-items: center;
-      border: 1px solid ${(props) => props?.theme?.colors?.gray};
-      gap: 5px;
-      height: 32px;
-      padding: 0 12px;
-      border-radius: 50px;
+    border: 1px solid ${(props) => props?.theme?.colors?.ec};
+    gap: 5px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 50px;
+    transition: all 0.3s ease-out;
+    .name {
+      opacity: 0.8;
+      color: #000;
       transition: all 0.3s ease-out;
-      .name {
-        opacity: 0.8;
-        color: #000;
-        transition: all 0.3s ease-out;
-      }
-      &:hover {
-        background-color: ${(props) => props?.theme?.backgrounds?.hover};
-      }
-      &:hover .name {
-        opacity: 1;
-      }
+    }
+    &:hover {
+      background-color: ${(props) => props?.theme?.backgrounds?.hover};
+    }
+    &:hover .name {
+      opacity: 1;
     }
   }
 `;
@@ -64,7 +57,7 @@ const DropdownItem = ({ title, data }) => {
   return (
     <StyledDropdownItem>
       <h4 className="title">{title}</h4>
-      <div className="wrapper">
+      <Space wrap>
         {data &&
           data?.map((item) => (
             <Link to={`palette/${item?.slug}`} className="button" key={item?._id}>
@@ -72,7 +65,7 @@ const DropdownItem = ({ title, data }) => {
               <span className="name">{item?.name}</span>
             </Link>
           ))}
-      </div>
+      </Space>
     </StyledDropdownItem>
   );
 };
@@ -80,43 +73,14 @@ const DropdownItem = ({ title, data }) => {
 const DropdownCard = () => {
   const dispatch = useDispatch();
   const { colorTags } = useSelector((state) => state?.colorTags);
+  const { collectionTags } = useSelector((state) => state?.collectionTags);
 
-  const [collectionTags, setCollectionTags] = useState([]);
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await getColorTagData();
-
-  //       if (response?.success) {
-  //         setColorTags(response?.data);
-  //       }
-  //     } catch (error) {
-  //       console.log("error", error);
-  //     }
-  //   };
-
-  //   getData();
-  // }, []);
   useEffect(() => {
     dispatch(getColorTags());
   }, [dispatch]);
-  console.log("colorTags", colorTags);
-
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await getCollectionTagData();
-
-        if (response?.success) {
-          setCollectionTags(response?.data);
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    getData();
-  }, []);
+    dispatch(getCollectionTags());
+  }, [dispatch]);
 
   return (
     <StyledDropdownCard>

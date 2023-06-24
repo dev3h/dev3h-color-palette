@@ -7,7 +7,7 @@ import {
   SIGNOUT_SUCCESS,
   SIGNUP_SUCCESS,
   SHOW_LOADING,
-} from "../constants/Auth";
+} from "../../constants/Auth";
 
 const initState = {
   loading: false,

@@ -1,10 +1,11 @@
 import fetchApi from "../auth/FetchInterceptor";
 
-export const getColorTagData = async () => {
+export const getColorTagData = async (params) => {
   try {
     const response = await fetchApi({
       url: "/colortag",
       method: "get",
+      params,
     });
     return response;
   } catch (err) {

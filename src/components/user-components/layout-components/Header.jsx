@@ -14,15 +14,27 @@ const AppHeader = () => {
     <StyledHeader>
       <Container>
         <Row gutter={24}>
-          <Col className="gutter-row" span={4}>
+          <Col
+            className="gutter-row"
+            xs={{ span: 24 }}
+            sm={{ span: 24 }}
+            md={{ span: 4 }}
+            lg={{ span: 3 }}
+          >
             <Link to={path.HOME}>
               <img src="https://picsum.photos/50/50" alt="" />
             </Link>
           </Col>
-          <Col className="gutter-row" span={16}>
+          <Col
+            className="gutter-row"
+            xs={{ span: 24 }}
+            sm={{ span: 24 }}
+            md={{ span: 20 }}
+            lg={{ span: 17 }}
+          >
             <NavSearch />
           </Col>
-          <Col className="gutter-row" span={4}>
+          <Col className="gutter-row" xs={{ span: 0 }} sm={{ span: 0 }} lg={{ span: 4 }}>
             Select
           </Col>
         </Row>

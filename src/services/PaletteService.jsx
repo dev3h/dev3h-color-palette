@@ -1,9 +1,9 @@
 import fetchApi from "../auth/FetchInterceptor";
 
-export const getCollectionTagData = async (params) => {
+export const getPaletteData = async (params) => {
   try {
     const response = await fetchApi({
-      url: "/collectiontag",
+      url: "/palette",
       method: "get",
       params,
     });
