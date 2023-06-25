@@ -16,8 +16,8 @@ const AppHeader = () => {
         <Row gutter={24}>
           <Col
             className="gutter-row"
-            xs={{ span: 24 }}
-            sm={{ span: 24 }}
+            xs={{ span: 3 }}
+            sm={{ span: 3 }}
             md={{ span: 4 }}
             lg={{ span: 3 }}
           >
@@ -27,8 +27,8 @@ const AppHeader = () => {
           </Col>
           <Col
             className="gutter-row"
-            xs={{ span: 24 }}
-            sm={{ span: 24 }}
+            xs={{ span: 21 }}
+            sm={{ span: 21 }}
             md={{ span: 20 }}
             lg={{ span: 17 }}
           >

@@ -11,9 +11,8 @@ const NavSearch = () => {
   };
 
   const handleInputBlur = (event) => {
-    if (!event.relatedTarget) {
-      setIsFocus(false);
-    }
+    event.stopPropagation();
+    setIsFocus(false);
   };
   return (
     <>

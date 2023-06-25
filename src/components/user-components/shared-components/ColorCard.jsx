@@ -1,9 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { HeartOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import * as fns from "../../../utils";
-// import theme from "../../../configs/ThemeConfig";
+import path from "../../../utils/path";
 
 const StyledColorCard = styled.div`
   width: 100%;
@@ -86,15 +87,11 @@ const StyledPaletteAction = styled.div`
 `;
 
 const ColorCard = ({ palette }) => {
+  const navigate = useNavigate();
   const { colors, total_like, createdAt, _id, slug } = palette;
-  const newColors = [];
-  for (let i = 0; i < colors.length; i += 6) {
-    const color = colors.slice(i, i + 6);
-    newColors.push(color);
-  }
-
+  const newColors = fns.splitColorString(colors);
   return (
-    <StyledColorCard>
+    <StyledColorCard onClick={() => navigate(`${path.PALETTE_DETAIL}/${slug}`)}>
       <div className="palette">
         {newColors.map((color, index) => (
           <StylePaletteRow color={color} key={index}>
