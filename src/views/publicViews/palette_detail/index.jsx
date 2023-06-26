@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Space } from "antd";
 
 import { getPaletteData } from "../../../services";
-import { ColorCard } from "../../../components/user-components/shared-components";
+import { ColorCard, Tags } from "../../../components/user-components/shared-components";
 import * as fns from "../../../utils/";
 
 const StyledPaletteDetail = styled.div`
   padding: 8px;
+  border-bottom: 1px solid ${(props) => props?.theme?.colors?.ec};
   .palette-wrapper {
     width: 50%;
     margin: 0 auto;
@@ -38,6 +40,11 @@ const StyledPaletteDetail = styled.div`
         }
       }
     }
+    .tags-wrapper {
+      justify-content: center;
+      width: 100%;
+      margin: 25px 0;
+    }
   }
 `;
 
@@ -66,6 +73,7 @@ const PaletteDetail = () => {
     };
     getPaletteDetail();
   }, [slug]);
+  console.log(palette);
 
   return (
     <StyledPaletteDetail>
@@ -99,6 +107,10 @@ const PaletteDetail = () => {
               ))}
           </tr>
         </table>
+        <Space wrap className="tags-wrapper">
+          <Tags data={palette?.tags?.collectionTags} />
+          <Tags data={palette?.tags?.colorTags} />
+        </Space>
       </div>
     </StyledPaletteDetail>
   );

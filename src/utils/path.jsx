@@ -1,7 +1,7 @@
 const path = {
   PUBLIC: "/",
   HOME: "/",
-  LOGIN: "/login",
+  USERAUTH: "/user/auth",
   ALL: "*",
   POPULAR: "/popular",
   RANDOM: "/random",

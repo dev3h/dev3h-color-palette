@@ -6,8 +6,8 @@ import { ThemeProvider } from "styled-components";
 import path from "./utils/path";
 import ErrorPage from "./views/publicViews/error-page";
 import { Home, PaletteDetail } from "./views/publicViews";
-import { UserLogin } from "./views/publicViews/auth";
-import PublicLayout from "./layouts/publicLayouts";
+import UserAuthView from "./views/publicViews/auth";
+import { UserAuthLayout, UserAppLayout } from "./layouts/publicLayouts";
 import GlobalStyle from "./assets/css/global-css/GlobalStyles";
 import theme from "./configs/ThemeConfig";
 
@@ -16,7 +16,7 @@ function App() {
     // route user
     {
       path: path.PUBLIC,
-      element: <PublicLayout />,
+      element: <UserAppLayout />,
       errorElement: <ErrorPage />,
       children: [
         {
@@ -42,8 +42,15 @@ function App() {
       ],
     },
     {
-      path: path.LOGIN,
-      element: <UserLogin />,
+      path: path.PUBLIC,
+      element: <UserAuthLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: path.USERAUTH,
+          element: <UserAuthView />,
+        },
+      ],
     },
   ]);
   return (
