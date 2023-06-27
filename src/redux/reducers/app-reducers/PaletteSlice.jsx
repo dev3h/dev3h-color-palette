@@ -24,7 +24,7 @@ const paletteSlice = createSlice({
 
     builder.addCase(actions.getPalettes.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorMessage = action.payload.message;
+      state.message = action.payload.message;
     });
   },
 });

@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
@@ -21,6 +22,8 @@ const StyledHeader = styled.header`
 `;
 
 const AppHeader = () => {
+  const a = useSelector((state) => state?.user);
+  console.log("isLogin", a);
   return (
     <StyledHeader>
       <Container>

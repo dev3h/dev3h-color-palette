@@ -1,10 +1,28 @@
+import { useDispatch } from "react-redux";
 import propTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Space } from "antd";
+
 import { StyledWrapper } from "..";
+import { StoreCurrentUserInfo } from "../../../../redux/reducers/auth-reducers/AuthSlice";
+import path from "../../../../utils/path";
+import * as services from "../../../../services";
 
 const UserLoginForm = ({ moveForm }) => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onFinish = async (values) => {
+    const response = await services.login(values);
+    if (response?.success) {
+      dispatch(
+        StoreCurrentUserInfo({
+          isLogin: true,
+          currentUser: response?.userData,
+          token: response?.accessToken,
+        })
+      );
+      navigate(path.HOME);
+    }
   };
   return (
     <StyledWrapper>

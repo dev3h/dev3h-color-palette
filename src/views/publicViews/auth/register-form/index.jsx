@@ -1,11 +1,18 @@
 import propTypes from "prop-types";
-import { Form, Input, Button, Space } from "antd";
+import { Form, Input, Button, Space, message } from "antd";
 
 import { StyledWrapper } from "..";
+import * as services from "../../../../services";
 
 const UserRegisterForm = ({ moveForm }) => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const [form] = Form.useForm();
+  const onFinish = async (values) => {
+    const response = await services.register(values);
+    if (response?.success) {
+      message.success(response?.mes);
+      form.resetFields();
+      moveForm(false);
+    }
   };
   return (
     <StyledWrapper>

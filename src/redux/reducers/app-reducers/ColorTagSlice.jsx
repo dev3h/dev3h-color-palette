@@ -29,7 +29,7 @@ const colorTagSlice = createSlice({
     builder.addCase(actions.getColorTags.rejected, (state, action) => {
       // Tắt trạng thái loading, lưu thông báo lỗi vào store
       state.isLoading = false;
-      state.errorMessage = action.payload.message;
+      state.message = action.payload.message;
     });
   },
 });

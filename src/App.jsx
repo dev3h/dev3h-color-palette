@@ -1,8 +1,9 @@
-import store from "./redux/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { PersistGate } from "redux-persist/integration/react";
 
+import { store, persistor } from "./redux/store";
 import path from "./utils/path";
 import ErrorPage from "./views/publicViews/error-page";
 import { Home, PaletteDetail } from "./views/publicViews";
@@ -56,7 +57,9 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
         <GlobalStyle />
       </ThemeProvider>
     </Provider>

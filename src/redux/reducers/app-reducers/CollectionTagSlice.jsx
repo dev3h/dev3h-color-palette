@@ -24,7 +24,7 @@ const collectionTagSlice = createSlice({
 
     builder.addCase(actions.getCollectionTags.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorMessage = action.payload.message;
+      state.message = action.payload.message;
     });
   },
 });
