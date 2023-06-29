@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import path from "../../../utils/path";
 import UserRegisterForm from "./register-form";
 import UserLoginForm from "./login-form";
 
@@ -23,18 +24,12 @@ export const StyledWrapper = styled.div`
 `;
 
 const UserAuthView = () => {
-  const [isRegister, setIsRegister] = useState(false);
+  const location = useLocation();
 
-  const moveForm = (isRegister) => {
-    setIsRegister(isRegister);
-  };
   return (
     <>
-      {isRegister ? (
-        <UserRegisterForm moveForm={moveForm} />
-      ) : (
-        <UserLoginForm moveForm={moveForm} />
-      )}
+      {location.pathname === `${path?.USERAUTH}${path?.REGISTER}` && <UserRegisterForm />}
+      {location.pathname === `${path?.USERAUTH}${path?.LOGIN}` && <UserLoginForm />}
     </>
   );
 };

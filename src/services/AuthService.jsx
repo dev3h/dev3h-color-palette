@@ -26,6 +26,41 @@ export const register = async (data) => {
         "public-request": "true",
       },
       data,
+      withCredentials: true,
+    });
+    return response;
+  } catch (err) {
+    console.log("err", err);
+    return err;
+  }
+};
+
+export const forgotPassword = async (data) => {
+  try {
+    const response = await fetchApi({
+      url: "/user/forgotpassword",
+      method: "post",
+      headers: {
+        "public-request": "true",
+      },
+      data,
+    });
+    return response;
+  } catch (err) {
+    console.log("err", err);
+    return err;
+  }
+};
+
+export const resetPassword = async (data) => {
+  try {
+    const response = await fetchApi({
+      url: "/user/resetpassword",
+      method: "put",
+      headers: {
+        "public-request": "true",
+      },
+      data,
     });
     return response;
   } catch (err) {

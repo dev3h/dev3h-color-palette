@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
-import propTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Form, Input, Button, Space } from "antd";
 
 import { StyledWrapper } from "..";
@@ -8,9 +7,17 @@ import { StoreCurrentUserInfo } from "../../../../redux/reducers/auth-reducers/A
 import path from "../../../../utils/path";
 import * as services from "../../../../services";
 
-const UserLoginForm = ({ moveForm }) => {
+const UserLoginForm = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const moveToRegister = () => {
+    navigate(`${path?.USERAUTH}${path?.REGISTER}`);
+  };
+  const moveToReset = () => {
+    navigate(path?.FORGOTPASSWORD);
+  };
   const onFinish = async (values) => {
     const response = await services.login(values);
     if (response?.success) {
@@ -50,7 +57,7 @@ const UserLoginForm = ({ moveForm }) => {
               },
             ]}
           >
-            <Input placeholder="Username" />
+            <Input placeholder="Email" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -82,17 +89,15 @@ const UserLoginForm = ({ moveForm }) => {
         </Space>
       </Form>
       <div className="action">
-        <Button type="link">Forgot the password?</Button>
-        <Button type="link" onClick={() => moveForm(true)}>
+        <Button type="link" onClick={() => moveToReset()}>
+          Forgot the password?
+        </Button>
+        <Button type="link" onClick={() => moveToRegister()}>
           Create new account
         </Button>
       </div>
     </StyledWrapper>
   );
-};
-
-UserLoginForm.propTypes = {
-  moveForm: propTypes.func.isRequired,
 };
 
 export default UserLoginForm;
