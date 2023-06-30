@@ -2,17 +2,20 @@ const path = {
   ALL: "*",
   PUBLIC: "/",
   HOME: "/",
-  USERAUTH: "/user/auth/",
-  LOGIN: "login",
-  REGISTER: "register",
-  FINALREGISTER: "/user/auth/finalregister/:status",
-  FORGOTPASSWORD: "/user/auth/reset",
-  NEWPASSWORD: "/user/auth/new-password/:token",
+  USERAUTH: "/user/auth",
   POPULAR: "/popular",
   RANDOM: "/random",
   COLLECTION: "/collection",
   PALETTE_DETAIL: "/palette",
-  PALETTE_DETAIL_ID: "/palette/:slug",
 };
+
+path.LOGIN = `${path.USERAUTH}/login`;
+path.REGISTER = `${path.USERAUTH}/register`;
+path.FINALREGISTER = `${path.USERAUTH}/finalregister/:status`;
+path.REGISTERCODE = `${path.USERAUTH}/register-code`;
+path.FORGOTPASSWORD = `${path.USERAUTH}/reset`;
+path.NEWPASSWORD = `${path.USERAUTH}/new-password/:token`;
+
+path.PALETTE_DETAIL_ID = `${path.PALETTE_DETAIL}/:slug`;
 
 export default path;

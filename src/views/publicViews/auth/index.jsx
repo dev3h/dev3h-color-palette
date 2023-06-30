@@ -5,10 +5,17 @@ import UserRegisterForm from "./register-form";
 import UserLoginForm from "./login-form";
 
 export const StyledWrapper = styled.div`
-  h2 {
-    text-align: center;
-    text-transform: uppercase;
+  .form-header {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
+    .header-title {
+      flex: 1;
+      font-size: 20px;
+      font-weight: 500;
+      text-align: center;
+      text-transform: uppercase;
+    }
   }
   .input-space {
     width: 100%;
@@ -28,8 +35,8 @@ const UserAuthView = () => {
 
   return (
     <>
-      {location.pathname === `${path?.USERAUTH}${path?.REGISTER}` && <UserRegisterForm />}
-      {location.pathname === `${path?.USERAUTH}${path?.LOGIN}` && <UserLoginForm />}
+      {location.pathname === path?.REGISTER && <UserRegisterForm />}
+      {location.pathname === path?.LOGIN && <UserLoginForm />}
     </>
   );
 };

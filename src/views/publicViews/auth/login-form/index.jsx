@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Form, Input, Button, Space } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 import { StyledWrapper } from "..";
 import { StoreCurrentUserInfo } from "../../../../redux/reducers/auth-reducers/AuthSlice";
@@ -13,7 +14,10 @@ const UserLoginForm = () => {
   const navigate = useNavigate();
 
   const moveToRegister = () => {
-    navigate(`${path?.USERAUTH}${path?.REGISTER}`);
+    navigate(path?.REGISTER);
+  };
+  const goBack = () => {
+    navigate(path?.HOME);
   };
   const moveToReset = () => {
     navigate(path?.FORGOTPASSWORD);
@@ -33,7 +37,10 @@ const UserLoginForm = () => {
   };
   return (
     <StyledWrapper>
-      <h2>login</h2>
+      <div className="form-header">
+        <ArrowLeftOutlined className="header-back" onClick={() => goBack()} />
+        <h2 className="header-title">login</h2>
+      </div>
       <Form
         name="login"
         initialValues={{

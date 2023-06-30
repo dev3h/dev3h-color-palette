@@ -8,11 +8,11 @@ const FinalRegister = () => {
   useEffect(() => {
     if (status === "success") {
       message.success("Đăng ký thành công").then(() => {
-        navigate(`${path?.USERAUTH}${path?.LOGIN}`);
+        navigate(path?.LOGIN);
       });
     } else if (status === "failed") {
       message.error("Đăng ký thất bại").then(() => {
-        navigate(`${path?.USERAUTH}${path?.LOGIN}`);
+        navigate(path?.LOGIN);
       });
     }
   }, []);

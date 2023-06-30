@@ -10,20 +10,25 @@ const UserRegisterForm = () => {
   const navigate = useNavigate();
 
   const moveToLogin = () => {
-    navigate(`${path?.USERAUTH}${path?.LOGIN}`);
+    navigate(path?.LOGIN);
+  };
+  const moveToRegisterCode = () => {
+    navigate(path?.REGISTERCODE);
   };
   const onFinish = async (values) => {
     const response = await services.register(values);
     if (response?.success) {
       message.success(response?.mes);
       form.resetFields();
-      moveToLogin();
+      moveToRegisterCode();
     }
   };
 
   return (
     <StyledWrapper>
-      <h2>register</h2>
+      <div className="form-header">
+        <h2 className="header-title">register</h2>
+      </div>
       <Form name="register" onFinish={onFinish} layout="vertical">
         <Space direction="vertical" className="input-space">
           <Form.Item

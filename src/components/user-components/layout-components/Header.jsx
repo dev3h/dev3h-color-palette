@@ -49,7 +49,7 @@ const AppHeader = () => {
             <NavSearch />
           </Col>
           <Col className="gutter-row" xs={{ span: 0 }} sm={{ span: 0 }} lg={{ span: 4 }}>
-            <Link to={`${path?.USERAUTH}${path?.LOGIN}`}>
+            <Link to={path?.LOGIN}>
               <UserOutlined className="auth-icon" />
             </Link>
           </Col>

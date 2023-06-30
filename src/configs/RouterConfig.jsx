@@ -8,6 +8,7 @@ import UserAuthView from "../views/publicViews/auth";
 import { UserAuthLayout, UserAppLayout } from "../layouts/publicLayouts";
 import ForgotPassword from "../views/publicViews/auth/forgot-password/forgot-password-form";
 import NewPassWord from "../views/publicViews/auth/forgot-password/new-password-form";
+import RegisterCode from "../views/publicViews/auth/register-form/RegisterCode";
 
 const router = createBrowserRouter([
   // route user
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: path.FINALREGISTER,
     element: <FinalRegister />,
+  },
+  {
+    path: path.REGISTERCODE,
+    element: <RegisterCode />,
   },
   {
     path: path.FORGOTPASSWORD,

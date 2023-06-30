@@ -17,6 +17,25 @@ export const login = async (data) => {
   }
 };
 
+// register with save permanent data in cookie
+// export const register = async (data) => {
+//   try {
+//     const response = await fetchApi({
+//       url: "/user/register",
+//       method: "post",
+//       headers: {
+//         "public-request": "true",
+//       },
+//       data,
+//       withCredentials: true,
+//     });
+//     return response;
+//   } catch (err) {
+//     console.log("err", err);
+//     return err;
+//   }
+// };
+
 export const register = async (data) => {
   try {
     const response = await fetchApi({
@@ -26,7 +45,22 @@ export const register = async (data) => {
         "public-request": "true",
       },
       data,
-      withCredentials: true,
+    });
+    return response;
+  } catch (err) {
+    console.log("err", err);
+    return err;
+  }
+};
+
+export const finalRegister = async (token) => {
+  try {
+    const response = await fetchApi({
+      url: `/user/finalregister/${token}`,
+      method: "put",
+      headers: {
+        "public-request": "true",
+      },
     });
     return response;
   } catch (err) {
