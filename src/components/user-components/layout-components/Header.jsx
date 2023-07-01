@@ -1,11 +1,15 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Col, Row } from "antd";
-import { Link } from "react-router-dom";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+
 import NavSearch from "./NavSearch";
 import Container from "../shared-components/Container";
 import path from "../../../utils/path";
+import { getCurrentLogin } from "../../../redux/actions";
+import { logout } from "../../../redux/actions";
 
 const StyledHeader = styled.header`
   padding: 10px 0;
@@ -22,8 +26,11 @@ const StyledHeader = styled.header`
 `;
 
 const AppHeader = () => {
-  const a = useSelector((state) => state?.user);
-  console.log("isLogin", a);
+  const dispatch = useDispatch();
+  const { isLogin, current } = useSelector((state) => state?.user);
+  useEffect(() => {
+    if (isLogin) dispatch(getCurrentLogin());
+  }, [dispatch, isLogin]);
   return (
     <StyledHeader>
       <Container>
@@ -49,9 +56,18 @@ const AppHeader = () => {
             <NavSearch />
           </Col>
           <Col className="gutter-row" xs={{ span: 0 }} sm={{ span: 0 }} lg={{ span: 4 }}>
-            <Link to={path?.LOGIN}>
-              <UserOutlined className="auth-icon" />
-            </Link>
+            {current ? (
+              <div style={{ display: "flex", gap: "5px" }}>
+                <h3>{current?.displayname}</h3>
+                <h3 onClick={() => dispatch(logout())}>
+                  <LogoutOutlined />
+                </h3>
+              </div>
+            ) : (
+              <Link to={path?.LOGIN}>
+                <UserOutlined className="auth-icon" />
+              </Link>
+            )}
           </Col>
         </Row>
       </Container>

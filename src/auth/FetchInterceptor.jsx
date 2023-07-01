@@ -14,33 +14,34 @@ const service = axios.create({
 // const PUBLIC_REQUEST_KEY = "public-request";
 
 // API Request interceptor
-// service.interceptors.request.use(
-//   (config) => {
-//     const jwtToken = localStorage.getItem(AUTH_TOKEN);
+service.interceptors.request.use(
+  (config) => {
+    let userAuth = localStorage.getItem("persist:userAuth");
+    if (userAuth && typeof userAuth === "string") {
+      userAuth = JSON.parse(userAuth);
+      const accessToken = JSON.parse(userAuth?.token);
+      if (accessToken) {
+        config.headers = {
+          Authorization: `Bearer ${accessToken}`,
+        };
+        return config;
+      }
+    }
 
-//     if (jwtToken) {
-//       config.headers[TOKEN_HEADER_KEY] = jwtToken;
-//     }
-
-//     if (!jwtToken && !config.headers[PUBLIC_REQUEST_KEY]) {
-//       window.location.reload();
-//     }
-
-//     return config;
-//   },
-//   (error) => {
-//     // Do something with request error here
-//     notification.error({
-//       message: "Error",
-//     });
-//     Promise.reject(error);
-//   }
-// );
+    return config;
+  },
+  (error) => {
+    // Do something with request error here
+    notification.error({
+      message: "Error",
+    });
+    Promise.reject(error);
+  }
+);
 
 // API respone interceptor
 service.interceptors.response.use(
   (response) => {
-    console.log("response", response);
     return response?.data;
   },
   (error) => {

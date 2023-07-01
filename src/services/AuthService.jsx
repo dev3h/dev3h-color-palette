@@ -9,6 +9,39 @@ export const login = async (data) => {
         "public-request": "true",
       },
       data,
+      withCredentials: true,
+    });
+    return response;
+  } catch (err) {
+    console.log("err", err);
+    return err;
+  }
+};
+
+export const getCurrentLogin = async () => {
+  try {
+    const response = await fetchApi({
+      url: "/user/current",
+      method: "get",
+      headers: {
+        "public-request": "true",
+      },
+    });
+    return response;
+  } catch (err) {
+    console.log("err", err);
+    return err;
+  }
+};
+export const logout = async () => {
+  try {
+    const response = await fetchApi({
+      url: "/user/logout",
+      method: "get",
+      headers: {
+        "public-request": "true",
+      },
+      withCredentials: true,
     });
     return response;
   } catch (err) {
