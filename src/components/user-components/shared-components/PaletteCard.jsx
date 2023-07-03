@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import * as fns from "../../../utils";
 import path from "../../../utils/path";
 
-const StyledColorCard = styled.div`
+const StyledPaletteCard = styled.div`
   width: 100%;
   height: 270px;
   /* border: 1px solid; */
@@ -86,12 +87,19 @@ const StyledPaletteAction = styled.div`
   }
 `;
 
-const ColorCard = ({ palette }) => {
+const PaletteCard = ({ palette }) => {
   const navigate = useNavigate();
   const { colors, total_like, createdAt, _id, slug } = palette;
+  const [isLiked, setIsLiked] = useState(false);
   const newColors = fns.splitColorString(colors);
   return (
-    <StyledColorCard onClick={() => navigate(`${path.PALETTE_DETAIL}/${slug}`)}>
+    <StyledPaletteCard
+      onClick={(e) => {
+        e.stopPropagation();
+        navigate(`${path.PALETTE}/${slug}`);
+      }}
+      key={_id}
+    >
       <div className="palette">
         {newColors.map((color, index) => (
           <StylePaletteRow color={color} key={index}>
@@ -109,12 +117,12 @@ const ColorCard = ({ palette }) => {
         </div>
         <span className="palette--created-at">{fns.formatDate(createdAt)}</span>
       </StyledPaletteAction>
-    </StyledColorCard>
+    </StyledPaletteCard>
   );
 };
 
-ColorCard.propTypes = {
+PaletteCard.propTypes = {
   palette: PropTypes.object.isRequired,
 };
 
-export default ColorCard;
+export default PaletteCard;

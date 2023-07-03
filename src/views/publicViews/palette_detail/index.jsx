@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Space } from "antd";
 
 import { getPaletteData } from "../../../services";
-import { ColorCard, Tags } from "../../../components/user-components/shared-components";
+import { PaletteCard, Tags } from "../../../components/user-components/shared-components";
 import * as fns from "../../../utils/";
 
 const StyledPaletteDetail = styled.div`
@@ -73,12 +73,11 @@ const PaletteDetail = () => {
     };
     getPaletteDetail();
   }, [slug]);
-  console.log(palette);
 
   return (
     <StyledPaletteDetail>
       <div className="palette-wrapper">
-        <ColorCard palette={palette} />
+        <PaletteCard palette={palette} />
         <table className="palette-info">
           <tr>
             {colors &&

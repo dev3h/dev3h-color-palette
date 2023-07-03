@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import path from "../utils/path";
 import ErrorPage from "../views/publicViews/error-page";
-import { Home, PaletteDetail } from "../views/publicViews";
+import { Home, Palette, PaletteDetail } from "../views/publicViews";
 import FinalRegister from "../views/publicViews/auth/register-form/FinalRegister";
 import UserAuthView from "../views/publicViews/auth";
 import { UserAuthLayout, UserAppLayout } from "../layouts/publicLayouts";
@@ -34,7 +34,11 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: path.PALETTE_DETAIL_ID,
+        path: path.PALETTE,
+        element: <Palette />,
+      },
+      {
+        path: path.PALETTE_DETAIL,
         element: <PaletteDetail />,
       },
     ],

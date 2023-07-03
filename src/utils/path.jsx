@@ -6,7 +6,7 @@ const path = {
   POPULAR: "/popular",
   RANDOM: "/random",
   COLLECTION: "/collection",
-  PALETTE_DETAIL: "/palette",
+  PALETTE: "/palette",
 };
 
 path.LOGIN = `${path.USERAUTH}/login`;
@@ -16,6 +16,6 @@ path.REGISTERCODE = `${path.USERAUTH}/register-code`;
 path.FORGOTPASSWORD = `${path.USERAUTH}/reset`;
 path.NEWPASSWORD = `${path.USERAUTH}/new-password/:token`;
 
-path.PALETTE_DETAIL_ID = `${path.PALETTE_DETAIL}/:slug`;
+path.PALETTE_DETAIL = `${path.PALETTE}/:slug`;
 
 export default path;

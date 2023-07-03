@@ -1,5 +1,5 @@
+import { useEffect, forwardRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Divider } from "antd";
@@ -17,25 +17,27 @@ const StyledDropdownCard = styled.div`
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: #fff;
+  display: ${(props) => (props?.isClick ? "block" : "none")};
+  transition: all 0.3s ease-out;
   .title {
     margin-bottom: 10px;
   }
 `;
 
 const StyledDropdownItem = styled.div`
-  padding: 22px;
+  padding: 20px;
 `;
 
-const DropdownItem = ({ title, data }) => {
+const DropdownItem = ({ title, data, ttag = "" }) => {
   return (
-    <StyledDropdownItem>
+    <StyledDropdownItem onClick={(e) => e.stopPropagation()}>
       <h4 className="title">{title}</h4>
-      <Tags data={data} />
+      <Tags data={data} ttag={ttag} />
     </StyledDropdownItem>
   );
 };
 
-const DropdownCard = () => {
+const DropdownCard = forwardRef(({ handleDropdownClick, isClick }, ref) => {
   const dispatch = useDispatch();
   const { colorTags } = useSelector((state) => state?.colorTags);
   const { collectionTags } = useSelector((state) => state?.collectionTags);
@@ -48,17 +50,31 @@ const DropdownCard = () => {
   }, [dispatch]);
 
   return (
-    <StyledDropdownCard>
-      <DropdownItem title="Colors" data={colorTags} />
+    <StyledDropdownCard
+      ref={ref}
+      className="dropdown-card"
+      onClick={(e) => {
+        e.stopPropagation();
+        handleDropdownClick(e);
+      }}
+      isClick={isClick}
+    >
+      <DropdownItem title="Colors" data={colorTags} ttag="colorTags" />
       <Divider />
-      <DropdownItem title="Collections" data={collectionTags} />
+      <DropdownItem title="Collections" data={collectionTags} ttag="collectionTags" />
     </StyledDropdownCard>
   );
+});
+
+DropdownCard.propTypes = {
+  handleDropdownClick: PropTypes.func.isRequired,
+  isClick: PropTypes.bool.isRequired,
 };
 
 DropdownItem.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  ttag: PropTypes.string.isRequired,
 };
 
 export default DropdownCard;
